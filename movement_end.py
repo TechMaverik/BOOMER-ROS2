@@ -81,34 +81,34 @@ def multiple_leg_movement_tester():
     This function should be implemented based on your specific requirements.
     """
     # shoulder
-    # channel_1 = 0
-    # channel_2 = 4
-    # channel_3 = 8
-    # channel_4 = 12
+    channel_1 = 0
+    channel_2 = 4
+    channel_3 = 8
+    channel_4 = 12
 
     # thy
-    # channel_1 = 1
-    # channel_2 = 5
-    # channel_3 = 9
-    # channel_4 = 13
+    channel_1 = 1
+    channel_2 = 5
+    channel_3 = 9
+    channel_4 = 13
 
     # femur
     channel_1 = 2
     channel_2 = 6
-    channel_3 = 10
+    channel_3 = 7
     channel_4 = 14
 
     angle = 90
-    speed = 2
+    speed = 10
     servos.position(index=channel_1, degrees=angle)
     servos.position(index=channel_2, degrees=angle)
     servos.position(index=channel_3, degrees=angle)
     servos.position(index=channel_4, degrees=angle)
     counter = 0
     # for angle in range(50, 130, speed):
-    for angle in range(50, 130, speed):
+    for angle in range(90, 0, -speed):
         counter = counter + speed
-        new_angle = 130 - counter
+        new_angle = 90 + counter
         print(new_angle)
         servos.position(index=channel_1, degrees=angle)
         servos.position(index=channel_3, degrees=angle)
@@ -117,9 +117,9 @@ def multiple_leg_movement_tester():
         time.sleep(0.3)
     counter = 0
     # for angle in range(130, 50, -speed):
-    for angle in range(130, 50, -speed):
+    for angle in range(0, 90, speed):
         counter = counter + speed
-        new_angle = 50 + counter
+        new_angle = 180 - counter
         print(new_angle)
         servos.position(index=channel_1, degrees=angle)
         servos.position(index=channel_3, degrees=angle)
@@ -127,10 +127,10 @@ def multiple_leg_movement_tester():
         servos.position(index=channel_4, degrees=new_angle)
         time.sleep(0.3)
     counter = 0
-    for angle in range(50, 90, speed):
+    for angle in range(90, 0, -speed):
         # for angle in range(50, 90, speed):
         counter = counter + speed
-        new_angle = 90 - counter
+        new_angle = 90 + counter
         print(new_angle)
         servos.position(index=channel_1, degrees=angle)
         servos.position(index=channel_3, degrees=angle)
