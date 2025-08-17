@@ -3,6 +3,7 @@
 from micropython import const
 import framebuf
 
+
 # register definitions
 SET_CONTRAST = const(0x81)
 SET_ENTIRE_ON = const(0xA4)

@@ -27,21 +27,19 @@ def read_word(reg):
 
 
 # Main loop
-try:
-    while True:
-        # Accelerometer
-        ax = read_word(ACCEL_XOUT_H) / 16384.0
-        ay = read_word(ACCEL_XOUT_H + 2) / 16384.0
-        az = read_word(ACCEL_XOUT_H + 4) / 16384.0
+def read_mpu6050():
+    # Accelerometer
+    ax = read_word(ACCEL_XOUT_H) / 16384.0
+    ay = read_word(ACCEL_XOUT_H + 2) / 16384.0
+    az = read_word(ACCEL_XOUT_H + 4) / 16384.0
 
-        # Gyroscope
-        gx = read_word(GYRO_XOUT_H) / 131.0
-        gy = read_word(GYRO_XOUT_H + 2) / 131.0
-        gz = read_word(GYRO_XOUT_H + 4) / 131.0
+    # Gyroscope
+    gx = read_word(GYRO_XOUT_H) / 131.0
+    gy = read_word(GYRO_XOUT_H + 2) / 131.0
+    gz = read_word(GYRO_XOUT_H + 4) / 131.0
 
-        print("Accel: X={:.2f}g Y={:.2f}g Z={:.2f}g".format(ax, ay, az))
-        print("Gyro : X={:.2f}°/s Y={:.2f}°/s Z={:.2f}°/s".format(gx, gy, gz))
-        print("-" * 40)
-        sleep(0.5)
-except KeyboardInterrupt:
-    print("Stopped.")
+    # print("Accel: X={:.2f}g Y={:.2f}g Z={:.2f}g".format(ax, ay, az))
+    # print("Gyro : X={:.2f}°/s Y={:.2f}°/s Z={:.2f}°/s".format(gx, gy, gz))
+    # print("-" * 40)
+    sleep(0.5)
+    return (ax, ay, az, gx, gy, gz)

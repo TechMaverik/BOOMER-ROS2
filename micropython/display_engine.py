@@ -12,7 +12,7 @@ import time
 
 WIDTH = 128
 HEIGHT = 64
-i2c = I2C(0, scl=Pin(9), sda=Pin(8), freq=200000)
+i2c = I2C(0, scl=Pin(22), sda=Pin(21), freq=200000)
 oled = SSD1306_I2C(WIDTH, HEIGHT, i2c)
 
 PI_FRAME_BUFFER = framebuf.FrameBuffer(PI, 32, 32, framebuf.MONO_HLSB)
@@ -30,14 +30,12 @@ def startup():
     """Startup"""
     oled.fill(0)
     oled.blit(PI_FRAME_BUFFER, 96, 0)
-    oled.text("BOOMER V 2.0", 0, 0)
+    oled.text("BOOMER V 3.0", 0, 0)
     time.sleep(1)
     oled.show()
     time.sleep(1)
     oled.text("HL", 0, 20)
-    oled.text("Robotics", 0, 30)
-    oled.text("Project...", 0, 40)
-    oled.text("2023", 0, 50)
+    oled.text("Engine 3.0", 0, 30)
     oled.show()
     time.sleep(2)
     oled.fill(0)
@@ -77,7 +75,7 @@ def open_eyes():
     oled.fill(0)
     oled.blit(OPEN_EYES_FRAME_BUFFER, 0, 0)
     oled.show()
-    time.sleep(1)
+    time.sleep(0.25)
 
 
 def close_eyes():
@@ -85,12 +83,28 @@ def close_eyes():
     oled.fill(0)
     oled.blit(CLOSE_EYES_FRAME_BUFFER, 0, 0)
     oled.show()
-    time.sleep(1)
+    time.sleep(0.25)
 
 
 def look_close():
     """Look close"""
     oled.fill(0)
     oled.blit(IDLE_FRAME_BUFFER, 0, 0)
+    oled.show()
+    time.sleep(1)
+
+
+def happy_face():
+    """Happy face"""
+    oled.fill(0)
+    oled.blit(HAPPY_FRAME_BUFFER, 0, 0)
+    oled.show()
+    time.sleep(1)
+
+
+def sad_face():
+    """Happy face"""
+    oled.fill(0)
+    oled.blit(SAD_FACE_FRAME_BUFFER, 0, 0)
     oled.show()
     time.sleep(1)
