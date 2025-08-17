@@ -1,4 +1,5 @@
 import time
+import ujson
 from servo import Servos
 from pca9685 import PCA9685
 from machine import I2C, Pin
@@ -75,11 +76,6 @@ class Movements:
             self.servos.position(index=self.channel_8, degrees=new_angle)
             time.sleep(0.3)
 
-        # self.servos.position(index=self.channel_9, degrees=0)
-        # self.servos.position(index=self.channel_11, degrees=0)
-        # self.servos.position(index=self.channel_10, degrees=180)
-        # self.servos.position(index=self.channel_12, degrees=180)
-
         self.servos.position(index=self.channel_9, degrees=90)
         self.servos.position(index=self.channel_11, degrees=90)
         self.servos.position(index=self.channel_10, degrees=90)
@@ -124,3 +120,19 @@ class Movements:
         self.servos.position(index=self.channel_4, degrees=90)
         time.sleep(1)
         self.set_to_x_position()
+
+    def movements_sdk(self, payload):
+        # Implement the logic to control the third-party movement system
+        payload = ujson.loads(payload)
+        self.servos.position(index=self.channel_1, degrees=payload["c1"])
+        self.servos.position(index=self.channel_2, degrees=payload["c2"])
+        self.servos.position(index=self.channel_3, degrees=payload["c3"])
+        self.servos.position(index=self.channel_4, degrees=payload["c4"])
+        self.servos.position(index=self.channel_5, degrees=payload["c5"])
+        self.servos.position(index=self.channel_6, degrees=payload["c6"])
+        self.servos.position(index=self.channel_7, degrees=payload["c7"])
+        self.servos.position(index=self.channel_8, degrees=payload["c8"])
+        self.servos.position(index=self.channel_9, degrees=payload["c9"])
+        self.servos.position(index=self.channel_10, degrees=payload["c10"])
+        self.servos.position(index=self.channel_11, degrees=payload["c11"])
+        self.servos.position(index=self.channel_12, degrees=payload["c12"])

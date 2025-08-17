@@ -3,15 +3,16 @@ import ujson
 import mpu6050
 from umqtt.simple import MQTTClient
 from display_content import DisplayContent
-from high_level_movements import HighLevelMovements
+from movements_sdk import HighLevelMovements, HighLevelMovementSDK
 
-MQTT_BROKER = "192.168.29.165"  # e.g., '192.168.1.100'
+MQTT_BROKER = "192.168.29.165"
 MQTT_PORT = 1883
 CLIENT_ID = "Boomer 3.0"
 MPU6050 = b"boomer/mpu6050"
 DISPLAY = b"boomer/display"
 SERVO = b"boomer/servo"
 HIGH_LEVEL_MOVEMENTS = b"boomer/movements"
+MOVEMENT_SDK = b"boomer/movement/sdk"
 
 
 def mqtt_callback(topic, msg):
@@ -20,6 +21,8 @@ def mqtt_callback(topic, msg):
         DisplayContent().display_content_with_topic(msg.decode())
     if topic.decode() == "boomer/movements":
         HighLevelMovements().high_level_movements(msg.decode())
+    if topic.decode() == "boomer/movement/sdk":
+        HighLevelMovementSDK().movements_sdk(msg.decode())
 
 
 def setup_mqtt():
@@ -29,6 +32,7 @@ def setup_mqtt():
     client.subscribe(DISPLAY)
     client.subscribe(SERVO)
     client.subscribe(HIGH_LEVEL_MOVEMENTS)
+    client.subscribe(MOVEMENT_SDK)
     return client  # ✅ Add this line
 
 

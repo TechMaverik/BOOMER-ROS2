@@ -7,14 +7,21 @@ class HighLevelMovements:
         if message == "default":
             Movements().set_to_default_positions()
 
-        if message == "stand":
+        elif message == "stand":
             Movements().set_to_standing_position()
 
-        if message == "sit":
+        elif message == "sit":
             Movements().set_to_sit_down_position()
 
-        if message == "forward":
+        elif message == "forward":
             Movements().set_to_move_forward()
 
-        if message == "x":
+        elif message == "x":
             Movements().set_to_x_position()
+
+
+class HighLevelMovementSDK:
+    # for external control system
+
+    def movements_sdk(self, payload_data):
+        Movements().movements_sdk(payload_data)
