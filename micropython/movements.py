@@ -38,11 +38,11 @@ class Movements:
 
         self.servos.position(index=self.channel_5, degrees=150)
         time.sleep(0.3)
-        self.servos.position(index=self.channel_6, degrees=150)
+        self.servos.position(index=self.channel_6, degrees=30)
         time.sleep(0.3)
         self.servos.position(index=self.channel_7, degrees=150)
         time.sleep(0.3)
-        self.servos.position(index=self.channel_8, degrees=150)
+        self.servos.position(index=self.channel_8, degrees=30)
         time.sleep(0.3)
 
         self.servos.position(index=self.channel_9, degrees=0)
