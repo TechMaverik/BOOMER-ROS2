@@ -1,5 +1,6 @@
 import time
 import ujson
+import configurations
 from servo import Servos
 from pca9685 import PCA9685
 from machine import I2C, Pin
@@ -12,20 +13,20 @@ class Movements:
         self.pca = PCA9685(self.i2c)
         self.pca.freq(50)
         self.servos = Servos(self.i2c)
-        self.channel_1 = 0
-        self.channel_2 = 4
-        self.channel_3 = 8
-        self.channel_4 = 12
-        self.channel_5 = 1
-        self.channel_6 = 5
-        self.channel_7 = 9
-        self.channel_8 = 13
-        self.channel_9 = 2
-        self.channel_10 = 6
-        self.channel_11 = 10
-        self.channel_12 = 14
-        self.default_angle = 90
-        self.speed = 20
+        self.channel_1 = configurations.CHANNEL_1
+        self.channel_2 = configurations.CHANNEL_2
+        self.channel_3 = configurations.CHANNEL_3
+        self.channel_4 = configurations.CHANNEL_4
+        self.channel_5 = configurations.CHANNEL_5
+        self.channel_6 = configurations.CHANNEL_6
+        self.channel_7 = configurations.CHANNEL_7
+        self.channel_8 = configurations.CHANNEL_8
+        self.channel_9 = configurations.CHANNEL_9
+        self.channel_10 = configurations.CHANNEL_10
+        self.channel_11 = configurations.CHANNEL_11
+        self.channel_12 = configurations.CHANNEL_12
+        self.default_angle = configurations.DEFAULT_ANGLE
+        self.speed = configurations.SPEED
 
     def set_to_default_positions(self):
         self.servos.position(index=self.channel_1, degrees=self.default_angle)
