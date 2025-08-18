@@ -1,18 +1,19 @@
 import time
 import ujson
 import mpu6050
+import configurations
 from umqtt.simple import MQTTClient
 from display_content import DisplayContent
 from movements_sdk import HighLevelMovements, HighLevelMovementSDK
 
-MQTT_BROKER = "192.168.29.165"
-MQTT_PORT = 1883
-CLIENT_ID = "Boomer 3.0"
-MPU6050 = b"boomer/mpu6050"
-DISPLAY = b"boomer/display"
-SERVO = b"boomer/servo"
-HIGH_LEVEL_MOVEMENTS = b"boomer/movements"
-MOVEMENT_SDK = b"boomer/movement/sdk"
+MQTT_BROKER = configurations.BROKER_ADDRESS
+MQTT_PORT = configurations.BROKER_PORT
+CLIENT_ID = configurations.CLIENT_ID
+MPU6050 = configurations.MPU6050_TOPIC_BIN
+DISPLAY = configurations.DISPLAY_TOPIC_BIN
+SERVO = configurations.SERVO_TOPIC_BIN
+HIGH_LEVEL_MOVEMENTS = configurations.MOVEMENTS_TOPIC_BIN
+MOVEMENT_SDK = configurations.MOVEMENTS_TOPIC_SDK_BIN
 
 
 def mqtt_callback(topic, msg):
