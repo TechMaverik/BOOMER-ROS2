@@ -11,9 +11,11 @@ MQTT_PORT = configurations.BROKER_PORT
 CLIENT_ID = configurations.CLIENT_ID
 MPU6050 = configurations.MPU6050_TOPIC_BIN
 DISPLAY = configurations.DISPLAY_TOPIC_BIN
-SERVO = configurations.SERVO_TOPIC_BIN
+SERVO_POSITION = configurations.SERVO_TOPIC_BIN
 HIGH_LEVEL_MOVEMENTS = configurations.MOVEMENTS_TOPIC_BIN
-MOVEMENT_SDK = configurations.MOVEMENTS_TOPIC_SDK_BIN
+MOVEMENTS_SDK_COXA = configurations.MOVEMENTS_TOPIC_SDK_COXA_BIN
+MOVEMENT_SDK_FEMUR = configurations.MOVEMENTS_TOPIC_SDK_FEMUR_BIN
+MOVEMENT_SDK_TIBIA = configurations.MOVEMENTS_TOPIC_SDK_TIBIA_BIN
 
 
 def mqtt_callback(topic, msg):
@@ -22,8 +24,12 @@ def mqtt_callback(topic, msg):
         DisplayContent().display_content_with_topic(msg.decode())
     if topic.decode() == "boomer/movements":
         HighLevelMovements().high_level_movements(msg.decode())
-    if topic.decode() == "boomer/movement/sdk":
-        HighLevelMovementSDK().movements_sdk(msg.decode())
+    if topic.decode() == "boomer/movement/sdk/coxa":
+        HighLevelMovementSDK().movements_sdk_coxa(msg.decode())
+    if topic.decode() == "boomer/movement/sdk/femur":
+        HighLevelMovementSDK().movements_sdk_femur(msg.decode())
+    if topic.decode() == "boomer/movement/sdk/tibia":
+        HighLevelMovementSDK().movements_sdk_tibia(msg.decode())
 
 
 def setup_mqtt():
@@ -31,9 +37,11 @@ def setup_mqtt():
     client.set_callback(mqtt_callback)
     client.connect()
     client.subscribe(DISPLAY)
-    client.subscribe(SERVO)
+    client.subscribe(SERVO_POSITION)
     client.subscribe(HIGH_LEVEL_MOVEMENTS)
-    client.subscribe(MOVEMENT_SDK)
+    client.subscribe(MOVEMENTS_SDK_COXA)
+    client.subscribe(MOVEMENT_SDK_FEMUR)
+    client.subscribe(MOVEMENT_SDK_TIBIA)
     return client  # ✅ Add this line
 
 

@@ -1,5 +1,6 @@
 import network
-import time, socket
+import time
+import configurations
 from machine import Pin
 
 
@@ -9,8 +10,8 @@ class Wifi:
         wlan = network.WLAN(network.STA_IF)
         wlan.active(True)
         led = Pin(23, Pin.OUT)
-        ssid = "F106-4G"
-        password = "12345678"
+        ssid = configurations.SSID
+        password = configurations.PSW
         wlan.connect(ssid, password)
         while not wlan.isconnected():
             print("Connecting...")
@@ -20,6 +21,3 @@ class Wifi:
             time.sleep(1)
         print("Connected to WiFi!")
         print("Network config:", wlan.ifconfig())
-
-
-Wifi().connect()

@@ -122,17 +122,22 @@ class Movements:
         time.sleep(1)
         self.set_to_x_position()
 
-    def movements_sdk(self, payload):
-        # Implement the logic to control the third-party movement system
+    def movements_sdk_coxa(self, payload):
         payload = ujson.loads(payload)
         self.servos.position(index=self.channel_1, degrees=payload["c1"])
         self.servos.position(index=self.channel_2, degrees=payload["c2"])
         self.servos.position(index=self.channel_3, degrees=payload["c3"])
         self.servos.position(index=self.channel_4, degrees=payload["c4"])
+
+    def movements_sdk_femur(self, payload):
+        payload = ujson.loads(payload)
         self.servos.position(index=self.channel_5, degrees=payload["c5"])
         self.servos.position(index=self.channel_6, degrees=payload["c6"])
         self.servos.position(index=self.channel_7, degrees=payload["c7"])
         self.servos.position(index=self.channel_8, degrees=payload["c8"])
+
+    def movements_sdk_tibia(self, payload):
+        payload = ujson.loads(payload)
         self.servos.position(index=self.channel_9, degrees=payload["c9"])
         self.servos.position(index=self.channel_10, degrees=payload["c10"])
         self.servos.position(index=self.channel_11, degrees=payload["c11"])

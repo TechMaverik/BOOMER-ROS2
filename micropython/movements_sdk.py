@@ -23,5 +23,11 @@ class HighLevelMovements:
 class HighLevelMovementSDK:
     # for external control system
 
-    def movements_sdk(self, payload_data):
-        Movements().movements_sdk(payload_data)
+    def movements_sdk_coxa(self, payload_data):
+        Movements().movements_sdk_coxa(payload_data)
+
+    def movements_sdk_femur(self, payload_data):
+        Movements().movements_sdk_femur(payload_data)
+
+    def movements_sdk_tibia(self, payload_data):
+        Movements().movements_sdk_tibia(payload_data)

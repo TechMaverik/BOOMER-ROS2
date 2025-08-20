@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-BOOMER_PORT = "COM6"
+BOOMER_PORT = "COM3"
 folder_path = "Micropython"
 all_items = os.listdir(folder_path)
 files_to_upload = [f for f in all_items if os.path.isfile(os.path.join(folder_path, f))]
@@ -28,5 +28,25 @@ def upload_files(port, files):
             print(f"❌ Failed to upload {file}: {e}")
 
 
+def delete_files(port, files):
+    for file in files:
+        try:
+            print(f"Deleting {file} from {port}...")
+            subprocess.run(["mpremote", "connect", port, "rm", file], check=True)
+            print(f"✅ {file} deleted.")
+        except subprocess.CalledProcessError:
+            print(
+                f"❌ Failed to delete {file}. It may not exist or there was a connection issue."
+            )
+
+
 if __name__ == "__main__":
-    upload_files(BOOMER_PORT, files_to_upload)
+    selection = int(
+        input(
+            "BOOMER 3.0 FIRMWARE MANAGER\n 1. Upload Firmware \n 2. Delete Firmware \n"
+        )
+    )
+    if selection == 1:
+        upload_files(BOOMER_PORT, files_to_upload)
+    elif selection == 2:
+        delete_files(BOOMER_PORT, files_to_upload)
